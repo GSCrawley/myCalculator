@@ -24,9 +24,9 @@ struct ContentView: View {
           }
             
             HStack(spacing: 4){
-                self.makeButton(label: "AC", color: .gray)
-                self.makeButton(label: "+/-", color: .gray)
-                self.makeButton(label: "%", color: .gray)
+                self.makeButton(label: "AC", color: Color( white:0.33, opacity: 1.0))
+                self.makeButton(label: "+/-", color: Color( white:0.33, opacity: 1.0))
+                self.makeButton(label: "%", color: Color( white:0.33, opacity: 1.0))
                 self.makeButton(label: "÷", color: .gray)
             }
             
@@ -34,33 +34,33 @@ struct ContentView: View {
                 self.makeButton(label: "7")
                 self.makeButton(label: "8")
                 self.makeButton(label: "9")
-                self.makeButton(label: "X")
+                self.makeButton(label: "X", color: .gray)
             }
             
             HStack(spacing: 4) {
                 self.makeButton(label: "4")
                 self.makeButton(label: "5")
                 self.makeButton(label: "6")
-                self.makeButton(label: "+")
+                self.makeButton(label: "+", color: .gray)
             }
             
             HStack(spacing: 4) {
                 self.makeButton(label: "1")
                 self.makeButton(label: "2")
                 self.makeButton(label: "3")
-                self.makeButton(label: "-")
+                self.makeButton(label: "-", color: .gray)
             }
             
             HStack(spacing: 4) {
                 self.makeButton(label: "0")
-                self.makeButton(label: ".")
-                self.makeButton(label: "=", width: 140)
+                self.makeButton(label: ".", color: Color( white:0.33, opacity: 1.0))
+                self.makeButton(label: "=", width: 140, color: .gray)
                 }
             }
         }
     }
 
-    func makeButton(label: String = "0", width: CGFloat = 70, height: CGFloat = 70, color: Color = .orange) -> some View {
+    func makeButton(label: String = "0", width: CGFloat = 70, height: CGFloat = 70, color: Color = .orange, foregroundColor: Color = .white) -> some View {
         return AnyView(Button(action: {print("Button pressed")}, label: {
             Text(label).frame(width: width, height: height , alignment: .center)
                 .foregroundColor(.black)
