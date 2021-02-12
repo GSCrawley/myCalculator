@@ -24,10 +24,10 @@ struct ContentView: View {
           }
             
             HStack(spacing: 4){
-                self.makeButton1(label: "AC")
-                self.makeButton1(label: "+/-")
-                self.makeButton1(label: "%")
-                self.makeButton1(label: "÷")
+                self.makeButton(label: "AC", color: .gray)
+                self.makeButton(label: "+/-", color: .gray)
+                self.makeButton(label: "%", color: .gray)
+                self.makeButton(label: "÷", color: .gray)
             }
             
             HStack(spacing: 4) {
@@ -60,27 +60,18 @@ struct ContentView: View {
         }
     }
 
-    func makeButton(label: String = "0", width: CGFloat = 70, height: CGFloat = 70) -> some View {
+    func makeButton(label: String = "0", width: CGFloat = 70, height: CGFloat = 70, color: Color = .orange) -> some View {
         return AnyView(Button(action: {print("Button pressed")}, label: {
             Text(label).frame(width: width, height: height , alignment: .center)
                 .foregroundColor(.black)
-                .background(Color.orange)
+                .background(color)
                 .cornerRadius(height / 2)
                 .font(.title)
                 .padding(2)
         }))
         }
    
-    func makeButton1(label: String = "0", width: CGFloat = 70, height: CGFloat = 70) -> some View {
-        return AnyView(Button(action: {print("Button pressed")}, label: {
-            Text(label).frame(width: width, height: height , alignment: .center)
-                .foregroundColor(.black)
-                .background(Color.gray)
-                .cornerRadius(height / 2)
-                .font(.title)
-                .padding(2)
-        }))
-        }
+    
 }
 
     
