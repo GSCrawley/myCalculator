@@ -42,7 +42,7 @@ struct ContentView: View {
                                self.makeButton(key: .six)
                                self.makeButton(key: .five)
                                self.makeButton(key: .four)
-                               self.makeButton(key: .minus, color: .orange)
+                               self.makeButton(key: .minus, color: .gray)
                            }
             
             HStack(spacing: 8) {
