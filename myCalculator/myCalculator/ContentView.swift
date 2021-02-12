@@ -17,11 +17,18 @@ struct ContentView: View {
           HStack() {
             Text("0")
                 .font(.system(size: 80))
-                .foregroundColor(.white)
+                .foregroundColor(.red)
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .bottomTrailing)
-                .padding()
+                .padding(20)
             
           }
+            
+            HStack(spacing: 4){
+                self.makeButton1(label: "AC")
+                self.makeButton1(label: "+/-")
+                self.makeButton1(label: "%")
+                self.makeButton1(label: "÷")
+            }
             
             HStack(spacing: 4) {
                 self.makeButton(label: "7")
@@ -45,9 +52,9 @@ struct ContentView: View {
             }
             
             HStack(spacing: 4) {
-                self.makeButton(label: "0", width: 148)
+                self.makeButton(label: "0")
                 self.makeButton(label: ".")
-                self.makeButton(label: "=")
+                self.makeButton(label: "=", width: 140)
                 }
             }
         }
@@ -56,14 +63,26 @@ struct ContentView: View {
     func makeButton(label: String = "0", width: CGFloat = 70, height: CGFloat = 70) -> some View {
         return AnyView(Button(action: {print("Button pressed")}, label: {
             Text(label).frame(width: width, height: height , alignment: .center)
-                .foregroundColor(.white)
+                .foregroundColor(.black)
                 .background(Color.orange)
                 .cornerRadius(height / 2)
                 .font(.title)
                 .padding(2)
         }))
         }
-    }
+   
+    func makeButton1(label: String = "0", width: CGFloat = 70, height: CGFloat = 70) -> some View {
+        return AnyView(Button(action: {print("Button pressed")}, label: {
+            Text(label).frame(width: width, height: height , alignment: .center)
+                .foregroundColor(.black)
+                .background(Color.gray)
+                .cornerRadius(height / 2)
+                .font(.title)
+                .padding(2)
+        }))
+        }
+}
+
     
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
