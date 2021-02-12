@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var env: GlobalState
     var body: some View {
       ZStack {
         Color
@@ -15,7 +16,7 @@ struct ContentView: View {
 //           .ignoreSafeArea()
         VStack(spacing:4) {
           HStack() {
-            Text("0")
+            Text(env.display)
                 .font(.system(size: 80))
                 .foregroundColor(.red)
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .bottomTrailing)
@@ -24,60 +25,59 @@ struct ContentView: View {
           }
             
             HStack(spacing: 4){
-                self.makeButton(label: "AC", color: Color( white:0.33, opacity: 1.0))
-                self.makeButton(label: "+/-", color: Color( white:0.33, opacity: 1.0))
-                self.makeButton(label: "%", color: Color( white:0.33, opacity: 1.0))
-                self.makeButton(label: "÷", color: .gray)
+                self.makeButton(key: .allClear, color: Color( white:0.33, opacity: 1.0))
+                self.makeButton(key: .plusMinus, color: Color( white:0.33, opacity: 1.0))
+                self.makeButton(key: .percent, color: Color( white:0.33, opacity: 1.0))
+                self.makeButton(key: .divide, color: .gray)
             }
             
             HStack(spacing: 4) {
-                self.makeButton(label: "7")
-                self.makeButton(label: "8")
-                self.makeButton(label: "9")
-                self.makeButton(label: "X", color: .gray)
+                self.makeButton(key: .seven)
+                self.makeButton(key: .eight)
+                self.makeButton(key: .nine)
+                self.makeButton(key: .multiply, color: .gray)
+            }
+            
+            HStack(spacing: 8) {
+                               self.makeButton(key: .six)
+                               self.makeButton(key: .five)
+                               self.makeButton(key: .four)
+                               self.makeButton(key: .minus, color: .orange)
+                           }
+            
+            HStack(spacing: 4) {
+                self.makeButton(key: .one)
+                self.makeButton(key: .two)
+                self.makeButton(key: .three)
+                self.makeButton(key: .minus, color: .gray)
             }
             
             HStack(spacing: 4) {
-                self.makeButton(label: "4")
-                self.makeButton(label: "5")
-                self.makeButton(label: "6")
-                self.makeButton(label: "+", color: .gray)
-            }
-            
-            HStack(spacing: 4) {
-                self.makeButton(label: "1")
-                self.makeButton(label: "2")
-                self.makeButton(label: "3")
-                self.makeButton(label: "-", color: .gray)
-            }
-            
-            HStack(spacing: 4) {
-                self.makeButton(label: "0")
-                self.makeButton(label: ".", color: Color( white:0.33, opacity: 1.0))
-                self.makeButton(label: "=", width: 140, color: .gray)
+                self.makeButton(key: .zero)
+                self.makeButton(key: .dot, color: Color( white:0.33, opacity: 1.0))
+                self.makeButton(key: .equal, width: 140, color: .gray)
                 }
             }
+            Spacer()
         }
     }
 
-    func makeButton(label: String = "0", width: CGFloat = 70, height: CGFloat = 70, color: Color = .orange, foregroundColor: Color = .white) -> some View {
-        return AnyView(Button(action: {print("Button pressed")}, label: {
-            Text(label).frame(width: width, height: height , alignment: .center)
+    func makeButton(key: CalculatorKey = .zero, height: CGFloat = 70, color: Color = .orange, foregroundColor: Color = .white) -> some View {
+        return AnyView(Button(action: {          env.keyPressed(key: key)
+}, label: {
+            Text(key.rawValue).frame(width: width, height: height , alignment: .center)
                 .foregroundColor(.black)
                 .background(color)
                 .cornerRadius(height / 2)
-                .font(.title)
-                .padding(2)
+                .font(.system(size: 36))     .padding(2)
         }))
         }
-   
-    
 }
 
     
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-            ContentView()
+        ContentView().environmentObject(GlobalState())
     }
 }
       
