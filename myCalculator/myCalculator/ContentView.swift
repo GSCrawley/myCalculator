@@ -14,7 +14,7 @@ struct ContentView: View {
         Color
            .black
 //           .ignoreSafeArea()
-        VStack(spacing:4) {
+        VStack(spacing:8) {
           HStack() {
             Text(env.display)
                 .font(.system(size: 80))
@@ -24,14 +24,14 @@ struct ContentView: View {
             
           }
             
-            HStack(spacing: 4){
+            HStack(spacing: 8){
                 self.makeButton(key: .allClear, color: Color( white:0.33, opacity: 1.0))
                 self.makeButton(key: .plusMinus, color: Color( white:0.33, opacity: 1.0))
                 self.makeButton(key: .percent, color: Color( white:0.33, opacity: 1.0))
                 self.makeButton(key: .divide, color: .gray)
             }
             
-            HStack(spacing: 4) {
+            HStack(spacing: 8) {
                 self.makeButton(key: .seven)
                 self.makeButton(key: .eight)
                 self.makeButton(key: .nine)
@@ -45,14 +45,14 @@ struct ContentView: View {
                                self.makeButton(key: .minus, color: .orange)
                            }
             
-            HStack(spacing: 4) {
+            HStack(spacing: 8) {
                 self.makeButton(key: .one)
                 self.makeButton(key: .two)
                 self.makeButton(key: .three)
                 self.makeButton(key: .minus, color: .gray)
             }
             
-            HStack(spacing: 4) {
+            HStack(spacing: 8) {
                 self.makeButton(key: .zero)
                 self.makeButton(key: .dot, color: Color( white:0.33, opacity: 1.0))
                 self.makeButton(key: .equal, width: 140, color: .gray)
@@ -62,14 +62,15 @@ struct ContentView: View {
         }
     }
 
-    func makeButton(key: CalculatorKey = .zero, height: CGFloat = 70, color: Color = .orange, foregroundColor: Color = .white) -> some View {
-        return AnyView(Button(action: {          env.keyPressed(key: key)
-}, label: {
-            Text(key.rawValue).frame(width: width, height: height , alignment: .center)
+    func makeButton(key: CalculatorKey = .zero, width: CGFloat = 70, height: CGFloat = 70, color: Color = .orange, foregroundColor: Color = .white) -> some View {
+        return AnyView(Button(action: {env.keyPressed(key: key)
+        }, label: {
+            Text(key.rawValue).frame(width: width, height: height, alignment: .center)
                 .foregroundColor(.black)
                 .background(color)
                 .cornerRadius(height / 2)
-                .font(.system(size: 36))     .padding(2)
+                .font(.system(size: 36))
+                .padding(2)
         }))
         }
 }
