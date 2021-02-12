@@ -8,7 +8,7 @@
 import Foundation
 
 class GlobalState: ObservableObject {
-    @Published var display = "hello"
+    @Published var display = "0"
     
     var storedValue: Double? = nil
     var operation: CalculatorKey? = nil
